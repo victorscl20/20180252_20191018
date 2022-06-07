@@ -1,3 +1,5 @@
+
+
 <%@ page import="com.example.laboratorio7.Beans.Actores" %><%--
   Created by IntelliJ IDEA.
   User: victor
@@ -6,6 +8,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    ArrayList<Actores> listaActores =  (ArrayList<Actores>) request.getAttribute("listaActores");
+%>
 <html>
 <head>
     <meta charset="utf-8">
