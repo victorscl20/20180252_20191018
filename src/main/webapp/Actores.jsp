@@ -29,7 +29,7 @@
             <%for(Actores actores:listaActores){%>
             <tr>
                 <td><%=actores.getId()%></td>
-                <td><%=actores.getNombre()%></td>
+                <td><%=actores.getNombre()%><%actores.getApellido()%></td>
                 <td><%=actores.getN_categorias()%></td>
                 <td><%=actores.getN_peliculas()%></td>
             </tr>

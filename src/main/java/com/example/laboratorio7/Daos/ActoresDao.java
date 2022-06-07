@@ -20,7 +20,13 @@ public ArrayList<Actores> listarActores(){
         Connection connection = DriverManager.getConnection(url,user,pass);
 
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("");
+        ResultSet rs = stmt.executeQuery("SELECT a.actor_id, first_name, a.last_name, COUNT(f.film_id), COUNT(c.category_id)\n" +
+                "FROM actor a, film f, film_actor fa, category c, film_category fc\n" +
+                "WHERE a.actor_id = fa.actor_id AND f.film_id = fa.film_id AND f.film_id = fc.film_id AND c.category_id = fc.category_id AND\n" +
+                "        (SELECT COUNT(f.film_id) FROM actor a, film f, film_actor fa, category c, film_category fc\n" +
+                "         WHERE a.actor_id = fa.actor_id AND f.film_id = fa.film_id AND f.film_id = fc.film_id AND c.category_id = fc.category_id) > 20\n" +
+                "GROUP BY a.actor_id\n" +
+                "ORDER BY a.actor_id ASC");
 
         while (rs.next()){
             Actores actores = new Actores();
